@@ -1,0 +1,2 @@
+serviceClass: classAPart.client.GreetingService
+path: B6BA3D150D29C80301E4FEEF0D1C7447.gwt.rpc

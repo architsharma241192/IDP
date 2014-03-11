@@ -1,0 +1,8 @@
+.btn-block {
+  display: block;
+  width: 100%;
+ padding: 18px 28px;
+  -webkit-box-sizing: 8px;
+     -moz-box-sizing: 8px;
+          box-sizing: 8pv;
+}
