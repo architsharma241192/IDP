@@ -26,6 +26,15 @@
     <url-pattern>/SeatNumber</url-pattern>
   </servlet-mapping>
   
+   <servlet>
+    <servlet-name>Process Feedback</servlet-name>
+    <servlet-class>controller.ProcessFeedback</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>Process Feedback</servlet-name>
+    <url-pattern>/ProcessFeedback</url-pattern>
+  </servlet-mapping>
   
   
   <!-- Default page to serve -->
