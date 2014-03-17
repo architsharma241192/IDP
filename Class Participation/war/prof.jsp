@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="javax.servlet.http.HttpSession, java.util.*" %>
+<%@ page import="models.*" %>
+<%@ page import="DAO.*" %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -195,8 +197,33 @@
 		<div class="col-md-2">
 			<table align="center">
 				<tr>
-					<td height=100>Notifications</td>
+				
+				
+				<!-- Archit Changes -->
+				
+					<td height=300>
+					<table allign="left">
+					<%
+					ArrayList<AskQuestion> ask= new ArrayList<AskQuestion>();
+					ask=AskQuestionDAO.queryAll();
+					int i=0;
+					while (i<8 && i<ask.size()){
+						AskQuestion a=ask.get(i);
+						String email=a.getUserName();
+					%>
+					<tr><td><%out.println("Question from "+email); %>
+					<button id="Y"  class="btn btn-success btn-mini" value="<%=email %>"></button>
+					<button id="N" class="btn btn-danger btn-mini" value="<%=email %>"/></button>
+					</td></tr>
+					
+					</table>
+					<%
+					i++;
+					} %>
+					
+					</td>
 				</tr>
+				<!-- Archit Changes End -->
 				<tr>
 					<td>
 					<%
@@ -228,6 +255,37 @@
 		
 	</div>
 	<!-- End Vertical Divider -->
+	
+	<!-- Scripts --><!-- Archit Changes -->
+	<script>
+	$(document).ready(function(){
+		  $("#Y").click(function(){  
+			var $email = $(this).attr('value');
+			//alert($email);
+		    $.post("/ProcessQuestion",
+		    {
+		      name: $email,
+		      points : "true"
+		    }
+		    );
+		  });
+		});
+	</script>
+	<script>
+	$(document).ready(function(){
+		  $("#N").click(function(){  
+			var $email = $(this).attr('value');
+			//alert($email);
+		    $.post("/ProcessQuestion",
+		    {
+		      name: $email,
+		      points : "false"
+		    }
+		    );
+		  });
+		});
+	</script>
+	<!-- Scripts --><!-- Archit Changes End -->
 	
 	<!-- Help Model Box -->
 <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpLabel" aria-hidden="true">

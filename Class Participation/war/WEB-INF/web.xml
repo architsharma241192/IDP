@@ -1,45 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee;
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee;
               http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-         version="2.5"
-         xmlns="http://java.sun.com/xml/ns/javaee">
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>Login Process</servlet-name>
+		<servlet-class>controller.LoginProcess</servlet-class>
+	</servlet>
 
-  <!-- Servlets -->
-  <servlet>
-    <servlet-name>Login Process</servlet-name>
-    <servlet-class>controller.LoginProcess</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>Login Process</servlet-name>
-    <url-pattern>/LoginProcess</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Seat Number</servlet-name>
-    <servlet-class>controller.SeatNumber</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>Seat Number</servlet-name>
-    <url-pattern>/SeatNumber</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>Process Feedback</servlet-name>
-    <servlet-class>controller.ProcessFeedback</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>Process Feedback</servlet-name>
-    <url-pattern>/ProcessFeedback</url-pattern>
-  </servlet-mapping>
-  
-  
-  <!-- Default page to serve -->
-  <welcome-file-list>
-    <welcome-file>Login.jsp</welcome-file>
-  </welcome-file-list>
+	<servlet-mapping>
+		<servlet-name>Login Process</servlet-name>
+		<url-pattern>/LoginProcess</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Seat Number</servlet-name>
+		<servlet-class>controller.SeatNumber</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Seat Number</servlet-name>
+		<url-pattern>/SeatNumber</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Process Feedback</servlet-name>
+		<servlet-class>controller.ProcessFeedback</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Process Feedback</servlet-name>
+		<url-pattern>/ProcessFeedback</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Ask Question</servlet-name>
+		<servlet-class>controller.AskQuestionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Ask Question</servlet-name>
+		<url-pattern>/AskQuestion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Process Question</servlet-name>
+		<servlet-class>controller.ProcessQuestionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Process Question</servlet-name>
+		<url-pattern>/ProcessQuestion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Bootstrap</servlet-name>
+		<servlet-class>controller.Bootstrap</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Bootstrap</servlet-name>
+		<url-pattern>/Bootstrap</url-pattern>
+	</servlet-mapping>
+
+
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>Login.jsp</welcome-file>
+	</welcome-file-list>
 
 </web-app>

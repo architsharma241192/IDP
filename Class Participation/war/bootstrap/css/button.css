@@ -6,3 +6,8 @@
      -moz-box-sizing: 8px;
           box-sizing: 8pv;
 }
+.btn-mini {
+    padding: 7px 9px;
+    font-size: 15px;
+    line-height: 13px;
+}

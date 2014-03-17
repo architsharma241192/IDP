@@ -3,7 +3,6 @@ package controller;
 import java.io.*;
 
 import javax.mail.Session;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.ServletException;
@@ -11,6 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.ArrayList;
+
+import DAO.*;
+import models.*;
 
 /**
  * Servlet implementation class LoginProcess
@@ -42,16 +46,28 @@ public class LoginProcess extends HttpServlet {
 		response.setContentType( "text/html" );
 		HttpSession mySession = request.getSession();
 		String userName = request.getParameter("username");
-		//System.out.println("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII");
-		//userName="akash";
 		String password = request.getParameter("password");
-		//password="123";
-		if(userName.equalsIgnoreCase("akash") && password.equalsIgnoreCase("123")){
-			mySession.setAttribute("email", userName);
-			mySession.setAttribute("seatNo",null);
-			response.sendRedirect("studentLogin.jsp");
+		ArrayList<Student> student = StudentDAO.queryAll();
+		Boolean flag = true;
+		for( Student s: student){
+			if (s.getUserName().equals(userName)&&s.getPassword().equals(password)){
+				mySession.setAttribute("email", userName);
+				mySession.setAttribute("seatNo",null);
+				response.sendRedirect("studentLogin.jsp");
+				flag = false;
+			}
 		}
-		//pw.println("HI2");
-	}
+		 if (userName.equalsIgnoreCase("richard") && password.equalsIgnoreCase("davis")){
+			mySession.setAttribute("email", userName);
+			//mySession.setAttribute("seatNo",null);
+			response.sendRedirect("prof.jsp");
+			flag = false;
+		}
+		if(flag){
+			response.sendRedirect("Login.jsp");
+			}
+	
+		}
+		
 
 }

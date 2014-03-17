@@ -82,7 +82,7 @@ else{
  			 		<td height=150><button type="button" class="btn btn-success btn-lg btn-block">Answer Question</button></td>
 				</tr>
 				<tr>
-  					<td height=150><button type="button" class="btn btn-info btn-lg btn-block">Ask/Share</button></td>
+  					<td height=150><a href="/AskQuestion?email=<%=session.getAttribute("email")%>"><button type="button" class="btn btn-info btn-lg btn-block" >Ask/Share</button></a></td>
 					</tr>
 				<tr>
   					<td height=150>
