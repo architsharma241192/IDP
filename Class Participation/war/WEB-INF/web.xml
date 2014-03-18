@@ -63,6 +63,16 @@
 		<servlet-name>Bootstrap</servlet-name>
 		<url-pattern>/Bootstrap</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Anon Question</servlet-name>
+		<servlet-class>controller.ProcessAnonQuestionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Anon Question</servlet-name>
+		<url-pattern>/processAnonQuestion</url-pattern>
+	</servlet-mapping>
 
 
 

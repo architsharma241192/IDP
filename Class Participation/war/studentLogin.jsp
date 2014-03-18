@@ -154,9 +154,10 @@ else{
         <h4 class="modal-title" id="myModalLabel">Please type in your anonymous question below.</h4>
       </div>
       <div class="modal-body">
-      	<form method="post" action="#" accept-charset="UTF-8">
+      	<form method="POST" action="/processAnonQuestion" accept-charset="UTF-8">
       	<textarea cols="80" rows="5" name="question"></textarea>
-      	<button class="btn btn-primary" type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
+      	<input type="hidden" name="userName" value="<%=session.getAttribute("email")%>">
+      	<input type="submit" class="btn btn-primary" value="Submit" class="btn btn-default" >
       	</form>
       </div>
     </div>

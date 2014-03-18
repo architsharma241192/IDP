@@ -36,7 +36,7 @@
 					<span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="prof.jsp">Welcome	to Class A Part : <%=session.getAttribute("email") %></a>
+				<a class="navbar-brand" href="prof.jsp">Welcome	to Class A Part : <%=session.getAttribute("profEmail") %></a>
 			</div>
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -197,33 +197,13 @@
 		<div class="col-md-2">
 			<table align="center">
 				<tr>
-				
+				<td>
 				
 				<!-- Archit Changes -->
-				
-					<td height=300>
-					<table allign="left">
-					<%
-					ArrayList<AskQuestion> ask= new ArrayList<AskQuestion>();
-					ask=AskQuestionDAO.queryAll();
-					int i=0;
-					while (i<8 && i<ask.size()){
-						AskQuestion a=ask.get(i);
-						String email=a.getUserName();
-					%>
-					<tr><td><%out.println("Question from "+email); %>
-					<button id="Y"  class="btn btn-success btn-mini" value="<%=email %>"></button>
-					<button id="N" class="btn btn-danger btn-mini" value="<%=email %>"/></button>
-					</td></tr>
-					
-					</table>
-					<%
-					i++;
-					} %>
-					
+				<iframe src=newsFeed.jsp width="180" height="200" frameborder="0"> </iframe>
+				<!-- Archit Changes -->
 					</td>
 				</tr>
-				<!-- Archit Changes End -->
 				<tr>
 					<td>
 					<%
@@ -241,6 +221,12 @@
 				</tr>
 				<tr>
   					<td height=100>
+  					<br/>
+  					<br/>
+  					<br/>
+  					<br/>
+  					<br/>
+  					<br/>
   					<a href="viewfeedback.jsp">
   						<button type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#viewFeedbackModal">View Feedback</button>
   					</a>
@@ -248,45 +234,13 @@
 				
 				</tr>
 				<tr>
+				<br/>
   					<td height=100><button type="button" class="btn btn-info btn-lg btn-block">Ask Question</button></td>
 				</tr>
 			</table>	
 		</div>
-		
 	</div>
 	<!-- End Vertical Divider -->
-	
-	<!-- Scripts --><!-- Archit Changes -->
-	<script>
-	$(document).ready(function(){
-		  $("#Y").click(function(){  
-			var $email = $(this).attr('value');
-			//alert($email);
-		    $.post("/ProcessQuestion",
-		    {
-		      name: $email,
-		      points : "true"
-		    }
-		    );
-		  });
-		});
-	</script>
-	<script>
-	$(document).ready(function(){
-		  $("#N").click(function(){  
-			var $email = $(this).attr('value');
-			//alert($email);
-		    $.post("/ProcessQuestion",
-		    {
-		      name: $email,
-		      points : "false"
-		    }
-		    );
-		  });
-		});
-	</script>
-	<!-- Scripts --><!-- Archit Changes End -->
-	
 	<!-- Help Model Box -->
 <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpLabel" aria-hidden="true">
   <div class="modal-dialog">

@@ -1,27 +1,25 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-import DAO.*;
 import models.*;
+import DAO.*;
 
 /**
- * Servlet implementation class ProcessQuestionServlet
+ * Servlet implementation class ProcessAnonQuestionServlet
  */
-@WebServlet("/ProcessQuestionServlet")
-public class ProcessQuestionServlet extends HttpServlet {
+@WebServlet("/ProcessAnonQuestionServlet")
+public class ProcessAnonQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProcessQuestionServlet() {
+    public ProcessAnonQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,25 +36,11 @@ public class ProcessQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email=request.getParameter("name");
-		Boolean addPoint=Boolean.parseBoolean(request.getParameter("points"));
-		if(addPoint){
-			AskQuestion ask = AskQuestionDAO.queryName(email);
-			Long Id = ask.Id; 
-			AskQuestionDAO.remove(Id);
-			Student s1 = StudentDAO.queryName(email);
-			s1.setPoints(s1.getPoints()+1);
-			StudentDAO.modify(s1);
-			//add student points
-			//delete question
-		}
-		else{
-			AskQuestion ask = AskQuestionDAO.queryName(email);
-			Long Id = ask.Id; 
-			AskQuestionDAO.remove(Id);
-		}
-		//System.out.println(email+"HI");
-		
+		//System.out.println("HERE");
+		String question = request.getParameter("question");
+		String userName = request.getParameter("userName");
+		AnonQuestionDAO.add(userName, question);
+		response.sendRedirect("studentLogin.jsp");
 	}
 
 }

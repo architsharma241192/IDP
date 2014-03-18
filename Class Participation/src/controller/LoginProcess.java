@@ -58,7 +58,7 @@ public class LoginProcess extends HttpServlet {
 			}
 		}
 		 if (userName.equalsIgnoreCase("richard") && password.equalsIgnoreCase("davis")){
-			mySession.setAttribute("email", userName);
+			mySession.setAttribute("profEmail", userName);
 			//mySession.setAttribute("seatNo",null);
 			response.sendRedirect("prof.jsp");
 			flag = false;
