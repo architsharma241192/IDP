@@ -73,6 +73,16 @@
 		<servlet-name>Anon Question</servlet-name>
 		<url-pattern>/processAnonQuestion</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Anon Process</servlet-name>
+		<servlet-class>controller.AnonServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Anon Process</servlet-name>
+		<url-pattern>/Anon</url-pattern>
+	</servlet-mapping>
 
 
 
