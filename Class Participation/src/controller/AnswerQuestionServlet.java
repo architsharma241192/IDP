@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.*;
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,14 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/ProcessFeedback")
-public class ProcessFeedback extends HttpServlet {
+import models.*;
+import DAO.*;
+
+/**
+ * Servlet implementation class AnswerQuestionServlet
+ */
+@WebServlet("/AnswerQuestionServlet")
+
+public class AnswerQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProcessFeedback() {
+    public AnswerQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,6 +33,14 @@ public class ProcessFeedback extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(false);
+		String username=request.getParameter("username");
+		
+		AnswerQuestionDAO answerQuestionDAO = new AnswerQuestionDAO();		
+		answerQuestionDAO.addAnswer(new AnswerQuestion(username)); 
+		
+		response.sendRedirect("studentLogin.jsp");
+		session.setAttribute("result", "Answer Question Sucessfull");
 	}
 
 	/**
@@ -33,11 +48,6 @@ public class ProcessFeedback extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session= request.getSession(false);
-		//session.removeAttribute("feedback");
-		String feedback = request.getParameter("feedback");
-		session.setAttribute("feedback", feedback);
-		response.sendRedirect("studentLogin.jsp");
 	}
-}
 
+}

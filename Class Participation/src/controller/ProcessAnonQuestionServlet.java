@@ -1,12 +1,14 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.*;
+import javax.servlet.http.HttpSession;
+
 import DAO.*;
 
 /**
@@ -29,6 +31,7 @@ public class ProcessAnonQuestionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 	/**
@@ -36,11 +39,13 @@ public class ProcessAnonQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//System.out.println("HERE");
+		HttpSession session = request.getSession(false);
 		String question = request.getParameter("question");
-		String userName = request.getParameter("userName");
-		AnonQuestionDAO.add(userName, question);
+		String username = request.getParameter("username");
+		AnonQuestionDAO.add(username, question);
+		session.setAttribute("result", "Anonymous Question Asked");
 		response.sendRedirect("studentLogin.jsp");
+		
 	}
 
 }

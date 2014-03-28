@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
 import DAO.*;
 import models.*;
 
@@ -31,32 +30,32 @@ public class ProcessQuestionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String email=request.getParameter("name");
+		// TODO Auto-generated method stub	
+		String username=request.getParameter("username");
 		Boolean addPoint=Boolean.parseBoolean(request.getParameter("points"));
 		if(addPoint){
-			AskQuestion ask = AskQuestionDAO.queryName(email);
-			Long Id = ask.Id; 
+			AskQuestion ask = AskQuestionDAO.queryName(username);
+			Long Id = ask.Id;
 			AskQuestionDAO.remove(Id);
-			Student s1 = StudentDAO.queryName(email);
-			s1.setPoints(s1.getPoints()+1);
-			StudentDAO.modify(s1);
-			//add student points
-			//delete question
-		}
-		else{
-			AskQuestion ask = AskQuestionDAO.queryName(email);
-			Long Id = ask.Id; 
-			AskQuestionDAO.remove(Id);
-		}
-		//System.out.println(email+"HI");
+			
+			UserDAO userDAO = new UserDAO();
+			User user1 = userDAO.retrieveUser(username);
+			user1.setPoints(user1.getPoints()+1);
+			userDAO.modifyUser(user1);
 		
+		}	
+		else {
+			AskQuestion ask = AskQuestionDAO.queryName(username);
+			Long Id = ask.Id; 
+			AskQuestionDAO.remove(Id);
+		}
 	}
 
 }

@@ -16,7 +16,7 @@
 <script src="bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
-	<table allign="left">
+	<table align="left">
 		<%
 			response.setIntHeader("Refresh", 30);
 								ArrayList<AskQuestion> ask = new ArrayList<AskQuestion>();
@@ -24,15 +24,15 @@
 								int i = 0;
 								while (i < 8 && i < ask.size()) {
 								AskQuestion a = ask.get(i);
-								String email = a.getUserName();
+								String username = a.getUserName();
 		%>
 		<tr>
 			<td>
 				<%
-					out.println("Question from " + email);
+					out.println("Question from " + username);
 				%>
-				<button id="Y" class="btn btn-success btn-mini" value="<%=email%>"></button>
-				<button id="N" class="btn btn-danger btn-mini" value="<%=email%>" /></button>
+				<button id="Y" class="btn btn-success btn-mini" value="<%=username%>"></button>
+				<button id="N" class="btn btn-danger btn-mini" value="<%=username%>" /></button>
 				<%
 					i++;
 								}
@@ -45,7 +45,7 @@
 					int j=0;
 					while (j < 2 && j < anon.size()) {
 						AnonQuestion an = anon.get(j);
-						String email = an.getUserName();
+						String username = an.getUserName();
 						String question = an.getQuestion();
 		%>
 		<tr>
@@ -53,8 +53,8 @@
 			<%
 				out.println(question);
 			%>
-				<button id="AY" class="btn btn-success btn-mini" value="<%=email%>"></button>
-				<button id="AN" class="btn btn-danger btn-mini" value="<%=email%>" /></button>
+				<button id="AY" class="btn btn-success btn-mini" value="<%=username%>"></button>
+				<button id="AN" class="btn btn-danger btn-mini" value="<%=username%>" /></button>
 			<td>
 		</tr>
 		<%
@@ -66,31 +66,30 @@
 	<script>
 		$(document).ready(function() {
 			$("#Y").click(function() {
-				var $email = $(this).attr('value');
-				//alert($email);
+				var $username = $(this).attr('value');
+				//alert($username);
 				$.post("/ProcessQuestion", {
-					name : $email,
+					username : $username,
 					points : "true",
 					ansync : false,
 					success : function() {
-						setTimeout(function() {
-							window.location.reload();
-						}, 0001);
-						//window.location.href = window.location;
+						window.location.reload(true);
+						window.location.reload(true);
+						window.location.reload();
+						;
 					}
 				});
 			});
-
 		});
 	</script>
 	<!-- Script for normal question no -->
 	<script>
 		$(document).ready(function() {
 			$("#N").click(function() {
-				var $email = $(this).attr('value');
-				//alert($email);
+				var $username = $(this).attr('value');
+				//alert($username);
 				$.post("/ProcessQuestion", {
-					name : $email,
+					username : $username,
 					points : "false",
 					ansync : false,
 					success : function() {
@@ -107,31 +106,30 @@
 	<script>
 		$(document).ready(function() {
 			$("#AY").click(function() {
-				var $email = $(this).attr('value');
-				//alert($email);
+				var $username = $(this).attr('value');
+				//alert($username);
 				$.post("/Anon", {
-					name : $email,
+					username : $username,
 					points : "true",
 					ansync : false,
 					success : function() {
-						setTimeout(function() {
-							window.location.reload();
-						}, 0001);
-						//window.location.href = window.location;
+						window.location.reload(true);
+						window.location.reload(true);
+						window.location.reload();
+						;
 					}
 				});
 			});
-
 		});
 	</script>
 	<!-- Script for anonymous question no -->
 	<script>
 		$(document).ready(function() {
 			$("#AN").click(function() {
-				var $email = $(this).attr('value');
-				//alert($email);
+				var $username = $(this).attr('value');
+				//alert($username);
 				$.post("/Anon", {
-					name : $email,
+					username : $username,
 					points : "false",
 					ansync : false,
 					success : function() {

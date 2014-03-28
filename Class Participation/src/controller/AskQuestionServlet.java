@@ -7,7 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.*;
+import javax.servlet.http.HttpSession;
+
 import DAO.*;
 
 /**
@@ -30,9 +31,11 @@ public class AskQuestionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String email=request.getParameter("email");
-		AskQuestionDAO.add(email, true); 
-		response.sendRedirect("studentLogin.jsp");	
+		HttpSession session = request.getSession(false);
+		String username=request.getParameter("username");
+		AskQuestionDAO.add(username, true); 
+		response.sendRedirect("studentLogin.jsp");
+		session.setAttribute("result", "Ask Question Sucessfull");
 	}
 
 	/**
@@ -40,6 +43,7 @@ public class AskQuestionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 	}
 
 }

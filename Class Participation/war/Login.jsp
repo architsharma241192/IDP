@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Class A Part - Student Login</title>
+<title>Class-A-Part - Login</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
  
 <!-- StyleSheet -->
@@ -27,7 +27,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="Login.jsp">Welcome to Class A Part</a>
+      <a class="navbar-brand" href="Login.jsp">Welcome to Class-A-Part</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

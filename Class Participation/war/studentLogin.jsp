@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="models.*" %>
+<%@ page import="DAO.*" %>
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Class A Part - Student Login</title>
+<title>Class-A-Part - Student Home</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
  
 <!-- StyleSheet -->
@@ -30,7 +32,7 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="studentLogin.jsp">Welcome
-				to Class A Part : <%=session.getAttribute("email") %></a>
+				to Class-A-Part : <%=session.getAttribute("username") %></a>
 		</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
@@ -59,8 +61,9 @@
 </nav>
 <!-- Navigation Ends -->
 <%
-if(session.getAttribute("seatNo")==null)
-{
+	if (session.getAttribute("username")!=null){
+		if(session.getAttribute("seatNo")==null)
+		{
 %>
 <script type="text/javascript">
     $(window).load(function(){
@@ -79,15 +82,27 @@ else{
 		<!-- The Button Side -->
 			<table style="width:300px" align="center">
 				<tr>
- 			 		<td height=150><button type="button" class="btn btn-success btn-lg btn-block">Answer Question</button></td>
+ 			 		<td height=150><a href="/AnswerQuestion?username=<%=session.getAttribute("username")%>"><button type="button" class="btn btn-success btn-lg btn-block">Answer Question</button></a></td>
 				</tr>
 				<tr>
-  					<td height=150><a href="/AskQuestion?email=<%=session.getAttribute("email")%>"><button type="button" class="btn btn-info btn-lg btn-block" >Ask/Share</button></a></td>
+  					<td height=150><a href="/AskQuestion?username=<%=session.getAttribute("username")%>"><button type="button" class="btn btn-info btn-lg btn-block" >Ask/Share</button></a></td>
 					</tr>
 				<tr>
   					<td height=150>
   					 <button type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">Anonymous Question</button></td>  
 				</tr>	
+				<tr>
+				<td>
+				<%
+				if(session.getAttribute("result")!=null){	
+					%>
+					<Font color="red"><%=session.getAttribute("result") %></Font>
+				<% 
+				session.setAttribute("result", null);
+				}
+				%>
+				<td>
+				</tr>
 				</table>	
 			</div>
 		<div class="col-md-2"></div>	
@@ -97,9 +112,13 @@ else{
 <table style="border-left: 4px solid gray;" width=90%>
 <tr >
 <td align="center">
-	<img src="/images/jeremy.jpg" title="Hi! I'm Jeremy!" height="50%" width="30%"/> <br/><br/>
+	<% 	UserDAO userDAO = new UserDAO();
+		User user = userDAO.retrieveUser((String)session.getAttribute("username"));
+	%>
+	
+	<img src="/studentPhotos/<%=session.getAttribute("username")%>.jpg"+ title="Hi! I'm <%=user.getName()%>!" height="50%" width="30%"/> <br/><br/>
 <p>
-	Jeremy Zhong</br>
+	<%=user.getName()%></br>
 	<font size="2px">School of Information Systems</br>
 	Singapore Management University</br>
 	Year of Intake: 2011 </font></br>
@@ -154,9 +173,9 @@ else{
         <h4 class="modal-title" id="myModalLabel">Please type in your anonymous question below.</h4>
       </div>
       <div class="modal-body">
-      	<form method="POST" action="/processAnonQuestion" accept-charset="UTF-8">
-      	<textarea cols="80" rows="5" name="question"></textarea>
-      	<input type="hidden" name="userName" value="<%=session.getAttribute("email")%>">
+      	<form id=myForm method="POST" action="/processAnonQuestion" accept-charset="UTF-8">
+      	<textarea cols="80" rows="5" name="question" required></textarea>
+      	<input type="hidden" name="username" value="<%=session.getAttribute("username")%>">
       	<input type="submit" class="btn btn-primary" value="Submit" class="btn btn-default" >
       	</form>
       </div>
@@ -252,6 +271,13 @@ else{
   </div>
 </div>
 <!-- Seat Number Modal Box -->
-
+<%
+	} 
+	else{
+		%>
+		<jsp:forward page="Login.jsp" />
+		<% 
+	}
+	%>
 </body>
 </html>

@@ -1,9 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,30 +41,37 @@ public class SeatNumber extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(false);
+		
+		UserDAO userDAO = new UserDAO();
+		
 		Boolean flag=true;
 		session.removeAttribute("errorMsg");
-		ArrayList<Student> student = StudentDAO.queryAll();
+		List<User> users = userDAO.retrieveUserList();
+		
 		int seatNumber=Integer.parseInt(request.getParameter("seatNo"));
-		for(Student s : student){
-			if(s.getSeatNumber()==seatNumber ){
+		
+		for(User user : users){
+			if(user.getSeatNumber()==seatNumber ){
 				session.setAttribute("seatNo",null);
-				session.setAttribute("errorMsg", "Error: Seat Number Taken. Contact  "+s.getUserName()+" to change");
+				session.setAttribute("errorMsg", "Error: Seat Number Taken. Contact  "+user.getUsername()+" to change");
 				response.sendRedirect("studentLogin.jsp");
 				flag=false;
 			}
 		}
+		
 		if(seatNumber < 0){ // check if valid
 			session.setAttribute("seatNo",null);
 			session.setAttribute("errorMsg", "Error: Invalid Seat Number");
 			response.sendRedirect("studentLogin.jsp");
 			flag=false;
 		}
+		
 		else if (flag){
-			String userName = (String) session.getAttribute("email");
+			String username = (String) session.getAttribute("username");
 			//System.out.println(userName);
-			Student s1 = StudentDAO.queryName(userName);
-			s1.setSeatNumber(seatNumber);
-			StudentDAO.modify(s1);
+			User user1 = userDAO.retrieveUser(username);
+			user1.setSeatNumber(seatNumber);
+			userDAO.modifyUser(user1);
 			session.setAttribute("seatNo","valid");
 			response.sendRedirect("studentLogin.jsp");
 		}

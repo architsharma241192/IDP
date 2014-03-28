@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Insert title here</title>
+<title>Class-A-Part - Bootstrap</title>
 </head>
 <body>
 <form method="POST" action="/Bootstrap" accept-charset="UTF-8">

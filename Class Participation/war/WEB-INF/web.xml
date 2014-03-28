@@ -55,16 +55,6 @@
 	</servlet-mapping>
 	
 	<servlet>
-		<servlet-name>Bootstrap</servlet-name>
-		<servlet-class>controller.Bootstrap</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Bootstrap</servlet-name>
-		<url-pattern>/Bootstrap</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
 		<servlet-name>Anon Question</servlet-name>
 		<servlet-class>controller.ProcessAnonQuestionServlet</servlet-class>
 	</servlet>
@@ -83,8 +73,36 @@
 		<servlet-name>Anon Process</servlet-name>
 		<url-pattern>/Anon</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Answer Question</servlet-name>
+		<servlet-class>controller.AnswerQuestionServlet</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>Answer Question</servlet-name>
+		<url-pattern>/AnswerQuestion</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Process Answer</servlet-name>
+		<servlet-class>controller.ProcessAnswerServlet</servlet-class>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>Process Answer</servlet-name>
+		<url-pattern>/ProcessAnswer</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Bootstrap</servlet-name>
+		<servlet-class>controller.Bootstrap</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Bootstrap</servlet-name>
+		<url-pattern>/Bootstrap</url-pattern>
+	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
