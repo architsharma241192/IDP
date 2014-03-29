@@ -54,7 +54,7 @@
 					<li><a data-toggle="modal" data-target="#help"><i class="glyphicon glyphicon-envelope white"></i>&nbsp Help</a></li>
 					<li class="divider-vertical"></li>
 					
-					<li><a href="Login.jsp" ><i	class="glyphicon glyphicon-off white"></i>&nbsp Sign Out</a></li>
+					<li><a href="/signOut" ><i	class="glyphicon glyphicon-off white"></i>&nbsp Sign Out</a></li>
 					<li class="divider-vertical"></li>
 				</ul>
 			</div>

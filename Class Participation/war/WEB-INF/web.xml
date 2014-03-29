@@ -95,6 +95,16 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>Sign Out</servlet-name>
+		<servlet-class>controller.ProcessSignOut</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Sign Out</servlet-name>
+		<url-pattern>/signOut</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Bootstrap</servlet-name>
 		<servlet-class>controller.Bootstrap</servlet-class>
 	</servlet>
